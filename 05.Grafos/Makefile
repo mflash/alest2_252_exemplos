@@ -1,6 +1,6 @@
 CPPFLAGS = -Wall -g -std=c++17   # Opções do compilador: todos warnings e debug info
 
-all: appgraph appdigraph appdfs appbfs appciclonaodirigido appciclodirigido apptopo appufind appewgraph
+all: appgraph appdigraph appdfs appbfs appciclonaodirigido appciclodirigido apptopo appufind appewgraph appkruskal
 
 # classe Graph
 appgraph = appgraph
@@ -47,6 +47,11 @@ appewgraph = appewgraph
 appewgraph_src = appewgraph.cpp edgeweightedgraph.cpp
 appewgraph_obj = $(appewgraph_src:.cpp=.o)
 
+# classe KruskalMST
+appkruskal = appkruskal
+appkruskal_src = kruskalmst.cpp edgeweightedgraph.cpp appkruskal.cpp unionfind.cpp
+appkruskal_obj = $(appkruskal_src:.cpp=.o)
+
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
 
@@ -74,6 +79,9 @@ $(appufind): $(appufind_obj)
 $(appewgraph): $(appewgraph_obj)
 	g++ $(CPPFLAGS) $(appewgraph_obj) -o $@
 
+$(appkruskal): $(appkruskal_obj)
+	g++ $(CPPFLAGS) $(appkruskal_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) \
 		   $(appdfs_obj) $(appdfs) \
@@ -82,7 +90,8 @@ clean:
 			 $(appciclodirigido_obj) $(appciclodirigido) \
 			 $(apptopo_obj) $(apptopo) \
 			 $(appufind_obj) $(appufind) \
-			 $(appewgraph_obj) $(appewgraph)
+			 $(appewgraph_obj) $(appewgraph) \
+			 $(appkruskal_obj) $(appkruskal) 
 
 
 	   	
