@@ -98,4 +98,9 @@ public class EdgeWeightedGraph {
     graph.put(v, list);
     return list;
   }
+
+  public static void main(String[] args) {
+    EdgeWeightedGraph g = new EdgeWeightedGraph("exemplos/tinyEWG.txt");
+    System.out.println(g.toDot());
+  }
 }
