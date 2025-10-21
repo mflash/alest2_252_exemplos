@@ -1,5 +1,5 @@
 from edgeweightedgraph import EdgeWeightedGraph
-from uf import UnionFind
+from unionfind import UnionFind
 
 class Kruskal:
 
