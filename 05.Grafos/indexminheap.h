@@ -85,6 +85,10 @@ public:
         swim(heap.size() - 1);
     }
 
+    bool contains(T key) const {
+        return dic.find(key) != dic.end();
+    }
+
     int size() {
         return heap.size()-1;
     }

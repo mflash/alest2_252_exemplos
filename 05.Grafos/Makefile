@@ -1,6 +1,6 @@
 CPPFLAGS = -Wall -g -std=c++17   # Opções do compilador: todos warnings e debug info
 
-all: appgraph appdigraph appdfs appbfs appciclonaodirigido appciclodirigido apptopo appufind appewgraph appkruskal appindexminheap
+all: appgraph appdigraph appdfs appbfs appciclonaodirigido appciclodirigido apptopo appufind appewgraph appkruskal appindexminheap appdijkstra appadjmatrixewdigraph
 
 # classe Graph
 appgraph = appgraph
@@ -57,6 +57,16 @@ appindexminheap = appindexminheap
 appindexminheap_src = appindexminheap.cpp
 appindexminheap_obj = $(appindexminheap_src:.cpp=.o)
 
+# classe DijkstraSP
+appdijkstra = appdijkstra
+appdijkstra_src = appdijkstra.cpp dijkstrasp.cpp edgeweighteddigraph.cpp edgeweightedgraph.cpp
+appdijkstra_obj = $(appdijkstra_src:.cpp=.o)
+
+# classe AdjMatrixEdgeWeightedDigraph
+appadjmatrixewdigraph = appadjmatrixewdigraph
+appadjmatrixewdigraph_src = appadjmatrixewdigraph.cpp adjmatrixedgeweighteddigraph.cpp edgeweighteddigraph.cpp edgeweightedgraph.cpp
+appadjmatrixewdigraph_obj = $(appadjmatrixewdigraph_src:.cpp=.o)
+
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
 
@@ -90,6 +100,12 @@ $(appkruskal): $(appkruskal_obj)
 $(appindexminheap): $(appindexminheap_obj) indexminheap.h
 	g++ $(CPPFLAGS) $(appindexminheap_obj) -o $@
 
+$(appdijkstra): $(appdijkstra_obj) indexminheap.h
+	g++ $(CPPFLAGS) $(appdijkstra_obj) -o $@
+
+$(appadjmatrixewdigraph): $(appadjmatrixewdigraph_obj)
+	g++ $(CPPFLAGS) $(appadjmatrixewdigraph_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) \
 	$(appdfs_obj) $(appdfs) \
@@ -100,7 +116,9 @@ clean:
 	$(appufind_obj) $(appufind) \
 	$(appewgraph_obj) $(appewgraph) \
 	$(appkruskal_obj) $(appkruskal) \
-	$(appindexminheap) $(appindexminheap_obj)
+	$(appindexminheap) $(appindexminheap_obj) \
+	$(appdijkstra) $(appdijkstra_obj) \
+	$(appadjmatrixewdigraph) $(appadjmatrixewdigraph_obj)
 
 
 	   	
