@@ -16,18 +16,24 @@ class EdgeWeightedGraph:
     def getVerts(self):
         return self.vertices
 
+    def getEdges(self):
+        edges = set()
+        for v in self.getVerts():
+            for e in self.getAdj(v):
+                e = tuple(e)
+                if e not in edges:
+                    edges.add(e)
+        return edges
+
     def toDot(self):
         edges = set()
         NEWLINE = '\n'
         sb = "graph {" + NEWLINE
         sb += "rankdir = LR;" + NEWLINE
         sb += "node [shape = circle];" + NEWLINE
-        for v in sorted(self.getVerts()):
-            for e in self.getAdj(v):
-                edge = e[0] + "-" + e[1]
-                if edge not in edges:
-                    sb += f'{e[0]} -- {e[1]} [label="{e[2]}"]' + NEWLINE
-                    edges.add(edge)
+        for e in sorted(self.getEdges()):
+            edge = e[0] + "-" + e[1]
+            sb += f'{e[0]} -- {e[1]} [label="{e[2]}"]' + NEWLINE
         sb += "}" + NEWLINE
         return sb
 
@@ -53,7 +59,7 @@ if __name__ == "__main__":
     #    g.addEdge("0", "2")
     #    g.addEdge("2", "1")
 
-    g = EdgeWeightedGraph("tinyEWG.txt")
+    g = EdgeWeightedGraph("exemplos/tinyEWG.txt")
 
     for v in g.getVerts():
         print(f"{v}: ", end="")

@@ -11,6 +11,7 @@ class EdgeWeightedDigraph: public EdgeWeightedGraph {
   EdgeWeightedDigraph(std::string filename);
 
   void addEdge(std::string v, std::string w, float weight);
+  std::vector<Edge> getEdges();
   std::string toDot();
 };
 

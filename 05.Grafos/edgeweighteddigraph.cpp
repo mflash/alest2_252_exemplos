@@ -35,6 +35,16 @@ void EdgeWeightedDigraph::addEdge(string v, string w, float weight) {
   vertices.insert(w);
 }
 
+vector<Edge> EdgeWeightedDigraph::getEdges() {
+  vector<Edge> edges;
+  for (auto const& v : getVerts()) {
+    for (auto const& e : getAdj(v)) {
+      edges.push_back(e);
+    }
+  }
+  return edges;
+}
+
 string EdgeWeightedDigraph::toDot() {
   const string NEWLINE = "\n";
   ostringstream ss;
