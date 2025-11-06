@@ -6,6 +6,7 @@ public class FloydWarshallSP {
     private double[][] dist;
     private int[][] next;
     private AdjMatrixEdgeWeightedDigraph mat;
+    private long tempo;
 
     public FloydWarshallSP(EdgeWeightedDigraph g) {
         this.mat = new AdjMatrixEdgeWeightedDigraph(g);
@@ -35,9 +36,10 @@ public class FloydWarshallSP {
             next[ind_u][ind_v] = ind_u;
         }
 
-        System.out.println(this);
+        //System.out.println(this);
 
         // Executar o algoritmo!
+        long start = System.currentTimeMillis();
         for (int k = 0; k < totVert; k++) {
             for (int j = 0; j < totVert; j++) {
                 for (int i = 0; i < totVert; i++) {
@@ -48,6 +50,12 @@ public class FloydWarshallSP {
                 }
             }
         }
+        long end = System.currentTimeMillis();
+        tempo = end - start;
+    }
+
+    public long getTempoTotal() {
+        return tempo;
     }
 
     public boolean hasPathTo(String u, String v) {
